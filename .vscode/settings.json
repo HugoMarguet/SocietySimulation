@@ -1,0 +1,7 @@
+{
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "files.eol": "\n",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active"
+}
