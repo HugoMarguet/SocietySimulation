@@ -4,7 +4,7 @@ use rand::random;
 pub struct Grid {
     width: u8,
     height: u8,
-    cells: Vec<Cell>,
+    cells: Vec<Cell>, // TODO: Change to a 2D array or grid 
 }
 
 impl Grid {
@@ -28,18 +28,26 @@ impl Grid {
     }
 
     pub fn display(&self) {
+        let splace_between_cells = " ";
+        let no_cell = " ";
+        let cell_empty = ".";
+        let new_line = '\n';
+
+        let mut output = String::new();
         for x in 0..self.width {
             for y in 0..self.height {
-                match self.get_cell(x, y) {
+                output.push_str(match self.get_cell(x, y) {
                     Some(cell) => match cell.get_person() {
-                        Some(person) => print!("{} ", person.get_team()),
-                        None => print!(". "),
+                        Some(person) => person.get_team().display(),
+                        None => cell_empty,
                     },
-                    None => print!("  "),
-                }
+                    None => no_cell,
+                });
+                output.push_str(splace_between_cells);
             }
-            println!();
+            output.push(new_line);
         }
+        println!("{}", output);
     }
 }
 
@@ -54,11 +62,7 @@ impl Cell {
         Cell {
             x: x,
             y: y,
-            person: if random() {
-                Some(Person::new("Bob"))
-            } else {
-                None
-            },
+            person: if random() { Some(Person::new()) } else { None },
         }
     }
 

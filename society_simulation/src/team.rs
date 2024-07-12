@@ -17,3 +17,14 @@ impl fmt::Display for Team {
         }
     }
 }
+
+impl Team {
+    pub fn display(&self) -> &str {
+        match self {
+            Team::Police => "P",
+            Team::White => "W",
+            Team::Black => "B",
+            Team::Yellow => "Y",
+        }
+    } 
+}
